@@ -1,0 +1,4 @@
+<!doctype html><meta charset="utf-8"><pre id="result"></pre><script src="../layouts.js"></script><script src="../game.js"></script><script>
+try { document.querySelector('pre').textContent = JSON.stringify(Object.fromEntries(AnimalLayouts.map((t,i)=>[t.id,AnimalGame.generate(42+i,{templateId:t.id,variant:0})]))); }
+catch (error) { document.querySelector('pre').textContent = error.stack; }
+</script>

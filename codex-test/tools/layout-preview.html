@@ -1,0 +1,24 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>布局视觉检查</title>
+<style>html,body{margin:0;padding:0}iframe{display:block;width:100%;height:1100px;border:0}pre{display:none}</style>
+<iframe id="game" title="实际游戏布局"></iframe><pre id="result">WAIT</pre>
+<script>
+const params=new URLSearchParams(location.search), frame=document.getElementById('game');
+if(params.get('mobile')==='1')frame.style.width='360px';
+frame.onload=()=>setTimeout(()=>{
+  try {
+    const w=frame.contentWindow, g=w.AnimalGame, app=w.AnimalApp;
+    const template=g.CONFIG.layoutTemplates[Number(params.get('template')||0)];
+    const deal=g.generate(2026,{templateId:template.id,variant:0});
+    const dialog=frame.contentDocument.getElementById('modal'); if(dialog.open)dialog.close();
+    app.session.start(deal);
+    const steps=Number(params.get('steps')||0);
+    for(const id of deal.solution.slice(0,steps)) {
+      if(!g.pick(app.session.state,id))throw Error('Invalid preview move');
+    }
+    app.render();
+    const hidden=app.session.state.tiles.filter(t=>t.state==='board' && g.visibleFraction(app.session.state,t)===0).length;
+    document.getElementById('result').textContent=JSON.stringify({template:template.id,steps,hidden,tiles:frame.contentDocument.querySelectorAll('.tile').length,width:w.innerWidth,overflow:frame.contentDocument.documentElement.scrollWidth>w.innerWidth});
+  } catch(error) {document.getElementById('result').textContent=error.stack;}
+},100);
+frame.src='../index.html';
+</script></html>

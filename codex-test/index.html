@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf5ed">
+  <title>动物收纳站</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="layouts.js" defer></script>
+  <script src="fallback.js" defer></script>
+  <script src="game.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <header class="heading">
+      <span class="eyebrow">小小收纳员 · 今天也要一起玩</span>
+      <h1>动物收纳站<span class="title-dot" aria-hidden="true"></span></h1>
+      <p class="rules">点击未被遮挡的动物，集齐三个就消除，<br class="mobile-break">别让收纳栏装满！</p>
+    </header>
+    <section class="play-card" aria-label="动物收纳游戏">
+      <div class="progress-heading">
+        <span id="progress-text">已消除 <strong>0 / 12</strong> 组</span>
+        <span class="level-tag">已通关 0 次</span>
+      </div>
+      <progress id="progress" value="0" max="12" aria-label="消除进度"></progress>
+      <div class="board-wrap">
+        <div id="board" aria-label="错落叠放的动物棋盘"></div>
+        <div id="loading" role="status" hidden>正在布置动物……</div>
+      </div>
+      <p class="board-tip">亮起的牌可以选，灰暗的牌还被挡着哦。</p>
+      <section class="tray-area" aria-label="收纳栏">
+        <div class="tray-heading"><h2>收纳栏 <span id="tray-count"></span></h2><span>三个同伴，一起回家</span></div>
+        <div id="tray" class="tray"></div>
+        <p id="hint" class="hint" role="status" aria-live="polite">先找相同的小动物，再轻轻点一下吧</p>
+      </section>
+    </section>
+    <div class="actions">
+      <button id="replay" class="button secondary" type="button"><span aria-hidden="true">↺</span> 重玩本局</button>
+      <button id="new-game" class="button primary" type="button">换一局 <span aria-hidden="true">→</span></button>
+    </div>
+    <p class="footer-note">不着急，想一想再出发。</p>
+    <p id="storage-note" class="storage-note" role="status"></p>
+  </main>
+  <dialog id="modal" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <div class="modal-inner">
+      <img src="assets/animals/panda.png" alt="" class="modal-animal">
+      <h2 id="modal-title"></h2><p id="modal-description"></p>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </dialog>
+</body>
+</html>

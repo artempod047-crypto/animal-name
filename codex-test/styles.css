@@ -1,0 +1,81 @@
+:root { color-scheme: light; font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif; color: #304d40; background: #edf5ed; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: radial-gradient(ellipse at 50% 12%, #fffdf5 0, #f5f7ed 45%, #e7f2ea 100%); min-height: 100vh; }
+button { font: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; cursor: pointer; }
+button:focus-visible { outline: 3px solid #d28d30; outline-offset: 4px; }
+button:disabled { cursor: default; }
+[hidden] { display: none !important; }
+.game-shell { width: min(100% - 32px, 548px); margin: 0 auto; padding: 26px 0 14px; }
+.heading { text-align: center; margin-bottom: 20px; }
+.eyebrow { font-size: 11px; letter-spacing: 2px; color: #637b67; }
+h1 { margin: 7px 0 9px; font-size: 36px; letter-spacing: 3px; font-weight: 900; line-height: 1.35; }
+.title-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #e6b65e; margin-left: 7px; }
+.rules { margin: 0; font-size: 13px; line-height: 1.9; color: #607062; }
+.mobile-break { display: none; }
+.play-card { padding: 20px; border: 1px solid #fff; background: #fffef9dd; border-radius: 25px; box-shadow: 0 12px 45px #416c4210; }
+.progress-heading { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+.progress-heading strong { color: #2c795b; padding: 0 4px; font-size: 15px; }
+.level-tag { font-size: 10px; background: #edf3e9; padding: 5px 10px; border-radius: 20px; color: #5b7655; }
+progress { appearance: none; display: block; width: 100%; height: 7px; border: none; border-radius: 6px; overflow: hidden; margin-top: 11px; background: #edf0e4; }
+progress::-webkit-progress-bar { background: #edf0e4; }
+progress::-webkit-progress-value { background: #80b898; border-radius: 6px; transition: width .2s; }
+progress::-moz-progress-bar { background: #80b898; }
+.board-wrap { position: relative; padding: 22px 5px 12px; }
+#board { position: relative; width: 100%; isolation: isolate; }
+.tile { position: absolute; display: grid; place-items: center; padding: 3px; border: 2px solid #a5b9a0; border-radius: 11%; background: #fff; box-shadow: 0 3px 0 #b1c2a2, 0 5px 5px #37564020; transition: filter .15s, border-color .15s; overflow: hidden; }
+.tile img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.tile.blocked { filter: brightness(.85) saturate(.85); border-color: #abb9a5; cursor: default; }
+.tile.concealed { visibility: hidden; }
+.tile.available:hover { border-color: #408966; box-shadow: 0 4px 0 #8ba782, 0 6px 10px #37564025; }
+.tile.available:active { filter: brightness(.96); }
+#loading { position: absolute; inset: 0; display: grid; place-items: center; z-index: 100; background: #fffef9e8; border-radius: 16px; font-size: 15px; }
+.board-tip { margin: 5px 0 19px; font-size: 11px; text-align: center; color: #74816f; }
+.tray-area { background: #edf3e7; border: 1px solid #e1e9d8; border-radius: 17px; padding: 13px 11px 4px; }
+.tray-heading { display: flex; align-items: center; justify-content: space-between; gap: 5px; margin-bottom: 11px; }
+.tray-heading h2 { font-size: 13px; margin: 0; }
+#tray-count { font-size: 12px; font-weight: 400; margin-left: 7px; }
+.tray-heading > span { font-size: 10px; color: #64745b; }
+.tray { display: grid; grid-template-columns: repeat(var(--tray-columns, 7), minmax(0, 1fr)); gap: 5px; }
+.slot { aspect-ratio: 1; min-width: 0; border: 1px dashed #a9b99a; border-radius: 9px; background: #dfe8d566; display: grid; place-items: center; }
+.tray-tile { background: white; border: 1px solid #b1c2a1; border-radius: 8px; width: 100%; height: 100%; overflow: hidden; box-shadow: 0 2px 0 #c1d0b4; }
+.tray-tile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.arriving { animation: arrive .18s ease-out both; }
+.matching { animation: match .2s ease-in both; }
+@keyframes arrive { from { transform: scale(.65); opacity: .35; } to { transform: scale(1); opacity: 1; } }
+@keyframes match { from { transform: scale(1); opacity: 1; } to { transform: scale(.5); opacity: 0; } }
+.hint { min-height: 18px; margin: 10px 0 5px; text-align: center; font-size: 11px; color: #5b7252; line-height: 1.6; }
+.hint.caution { color: #936128; }
+.tray-area.caution { background: #faf0db; border-color: #ead6b5; }
+.actions { display: flex; gap: 12px; margin-top: 18px; }
+.button { border: 1px solid transparent; border-radius: 13px; min-height: 45px; padding: 10px 19px; font-weight: 600; font-size: 14px; flex: 1; }
+.button span { margin: 0 5px; }
+.primary { color: #fff; background: #4c8064; box-shadow: 0 3px 0 #356449; }
+.primary:hover { background: #3d7155; }
+.secondary { color: #4e6752; background: #fffdf7; border-color: #cdd8c3; box-shadow: 0 3px 0 #dde4d1; }
+.secondary:hover { background: #f6f8ed; }
+.button:disabled { opacity: .55; }
+.footer-note { margin: 17px 0 0; text-align: center; font-size: 11px; letter-spacing: 1px; color: #70816d; }
+.storage-note { margin: 8px 0 0; font-size: 11px; text-align: center; color: #89612d; }
+dialog { border: 1px solid #fff; border-radius: 24px; padding: 0; width: min(90vw, 400px); color: #304d40; background: #fffdf5; box-shadow: 0 20px 80px #22362b33; }
+dialog::backdrop { background: #21392c66; backdrop-filter: blur(3px); }
+.modal-inner { padding: 24px; text-align: center; }
+.modal-animal { width: 98px; height: 98px; object-fit: contain; border-radius: 50%; }
+.modal-inner h2 { font-size: 21px; line-height: 1.6; margin: 10px 0; }
+.modal-inner p { font-size: 13px; color: #6b7865; line-height: 1.8; }
+.modal-actions { display: flex; gap: 10px; margin-top: 22px; }
+@media (max-width: 420px) {
+  .game-shell { width: calc(100% - 24px); padding-top: 20px; }
+  h1 { font-size: 30px; }
+  .eyebrow { font-size: 10px; }
+  .mobile-break { display: initial; }
+  .heading { margin-bottom: 14px; }
+  .play-card { padding: 14px 11px; border-radius: 21px; }
+  .board-wrap { padding: 21px 2px 12px; }
+  .tray-area { padding: 12px 8px 4px; }
+  .tray { gap: 4px; }
+  .tray-heading > span { font-size: 9px; }
+  .slot { border-radius: 6px; }
+  .tile { padding: 2px; }
+  .board-tip { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
